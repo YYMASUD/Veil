@@ -58,6 +58,13 @@ export interface IdentityKeypair {
   readonly identity: Identity;
   readonly sign: SignKeypair;
   readonly noise: NoiseKeypair;
+  /**
+   * BIP39 entropy this identity was derived from (16 bytes → 12 words,
+   * 32 bytes → 24 words). Present when the identity was generated or
+   * imported from a mnemonic; required for `toMnemonic()` export.
+   * This is root secret material — never persist it unencrypted.
+   */
+  readonly entropy?: Uint8Array;
 }
 
 /** BIP39 mnemonic used to export/import an identity. */

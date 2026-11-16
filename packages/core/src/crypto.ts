@@ -13,12 +13,24 @@ export interface EncryptedIdentityExport {
   readonly ciphertext: Uint8Array;
 }
 
+/** KDF cost parameters for at-rest encryption (Argon2id). */
+export interface Argon2Params {
+  /** Iterations (operations limit). */
+  readonly opsLimit: number;
+  /** Memory cost in KiB. */
+  readonly memLimit: number;
+}
+
 /** Ed25519/X25519 identity, mnemonic, and at-rest encryption operations. */
 export interface IdentityCrypto {
   generateIdentity(displayName?: string): Promise<IdentityKeypair>;
   fromMnemonic(mnemonic: string, language?: string): Promise<IdentityKeypair>;
   toMnemonic(keypair: IdentityKeypair, words?: 12 | 24): Promise<MnemonicSource>;
-  encryptIdentity(keypair: IdentityKeypair, passphrase: string): Promise<EncryptedIdentityExport>;
+  encryptIdentity(
+    keypair: IdentityKeypair,
+    passphrase: string,
+    params?: Argon2Params,
+  ): Promise<EncryptedIdentityExport>;
   decryptIdentity(data: EncryptedIdentityExport, passphrase: string): Promise<IdentityKeypair>;
   sign(message: Uint8Array, secretKey: Uint8Array): Promise<Uint8Array>;
   verify(message: Uint8Array, signature: Uint8Array, publicKey: Uint8Array): Promise<boolean>;

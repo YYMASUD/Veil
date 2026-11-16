@@ -10,6 +10,8 @@ export interface StoredMessage {
   readonly clock: HybridClock;
   readonly receivedAtMs: number;
   readonly expiresAtMs?: number;
+  /** Set by `tombstone()`; content must be treated as deleted from then on. */
+  readonly deletedAtMs?: number;
   readonly status: 'pending' | 'sent' | 'delivered' | 'read';
 }
 

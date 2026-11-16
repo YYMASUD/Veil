@@ -16,6 +16,8 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.3.5",
     "@veil/core": "workspace:*",
+    "@veil/crypto": "workspace:*",
+    "@veil/storage": "workspace:*",
     "@veil/ui": "workspace:*",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",

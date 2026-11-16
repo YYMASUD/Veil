@@ -79,6 +79,26 @@ The primary dev machine is Windows. Consequences: LF enforced via
 allow-list controls native builds. CI runs on Ubuntu and is the source of
 truth for the Linux build.
 
+## D-16 — Identity crypto stack: noble/scure, deterministic key derivation (2026-11-16)
+
+Phase 1 identity operations use **@noble/curves** (Ed25519, X25519),
+**@noble/hashes** (SHA-256, Argon2id), **@noble/ciphers**
+(ChaCha20-Poly1305) and **@scure/bip39** — audited, pure-JS, browser-safe
+libraries (D-04 prohibits hand-rolled primitives). Key derivation from the
+BIP39 entropy is domain-separated and deterministic:
+
+```
+signSeed  = SHA-256("veil/identity-ed25519-v1" ‖ entropy)  → Ed25519 (sign)
+noiseSeed = SHA-256("veil/identity-x25519-v1"  ‖ entropy)  → X25519 (Noise/mailbox)
+```
+
+so a 12/24-word mnemonic restores the whole identity. `libsignal-client`
+(audited, but a native binding) remains the candidate for the Phase 3
+X3DH/Double Ratchet session layer; the `IdentityCrypto`/`DirectMessageCrypto`
+seams keep that swappable. At-rest format: Argon2id(passphrase, t=3, 64 MiB)
+→ ChaCha20-Poly1305 over a versioned JSON blob containing the entropy; a
+mismatched `did` inside a decrypted blob is rejected (fail-closed).
+
 ## D-11 — pnpm 12 build-script approvals (2026-11-16)
 
 pnpm 12 no longer reads the `pnpm` field in `package.json`, and blocks

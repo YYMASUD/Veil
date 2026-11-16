@@ -248,6 +248,12 @@ importers:
       '@veil/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@veil/crypto':
+        specifier: workspace:*
+        version: link:../../packages/crypto
+      '@veil/storage':
+        specifier: workspace:*
+        version: link:../../packages/storage
       '@veil/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -300,6 +306,18 @@ importers:
 
   packages/crypto:
     dependencies:
+      '@noble/ciphers':
+        specifier: ^2.4.0
+        version: 2.4.0
+      '@noble/curves':
+        specifier: ^2.4.0
+        version: 2.4.0
+      '@noble/hashes':
+        specifier: ^2.4.0
+        version: 2.4.0
+      '@scure/bip39':
+        specifier: ^2.4.0
+        version: 2.4.0
       '@veil/core':
         specifier: workspace:*
         version: link:../core
@@ -335,6 +353,9 @@ importers:
       '@veil/core':
         specifier: workspace:*
         version: link:../core
+      '@veil/crypto':
+        specifier: workspace:*
+        version: link:../crypto
     devDependencies:
       '@types/node':
         specifier: ^22.0.0
@@ -841,6 +862,9 @@ packages:
 
   '@rolldown/pluginutils@1.1.1':
     resolution: {integrity: sha512-glFIJDvLNDtJhT9qrMFWLPbvS+skxgt4L0K8Ei2YtnhPysAJnsI7nyxSJxKj4ADeKX0OLjC4ntRkwpLOoS3rwA==}
+
+  '@scure/bip39@2.4.0':
+    resolution: {integrity: sha512-82dxFbZUYboyOf0AXiydsQrFQ5Q4h9mX+O2UkE91ROYmsc0BKMGZLwDmy96Jpa2+vrtoxomjUhy1RPIgH/r2nA==}
 
   '@sindresorhus/fnv1a@3.1.0':
     resolution: {integrity: sha512-KV321z5m/0nuAg83W1dPLy85HpHDk7Sdi4fJbwvacWsEhAh+rZUW4ZfGcXmUIvjZg4ss2bcwNlRhJ7GBEUG08w==}
@@ -2410,6 +2434,10 @@ snapshots:
     optional: true
 
   '@rolldown/pluginutils@1.1.1': {}
+
+  '@scure/bip39@2.4.0':
+    dependencies:
+      '@noble/hashes': 2.4.0
 
   '@sindresorhus/fnv1a@3.1.0': {}
 
