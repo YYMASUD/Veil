@@ -1,0 +1,23 @@
+{
+  "name": "@veil/crypto",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Veil — E2EE wrappers: identity generation, X3DH + Double Ratchet (1:1), MLS (groups), mnemonic export, Argon2id at-rest encryption.",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@veil/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.9.3",
+    "vitest": "^5.1.0"
+  }
+}
