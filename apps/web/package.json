@@ -1,0 +1,33 @@
+{
+  "name": "@veil/web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Veil decentralized encrypted chat — web client.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.5",
+    "@veil/core": "workspace:*",
+    "@veil/ui": "workspace:*",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tailwindcss": "^4.3.5",
+    "vite": "^8.3.8",
+    "zustand": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "typescript": "^5.9.3",
+    "vitest": "^5.1.0"
+  }
+}
