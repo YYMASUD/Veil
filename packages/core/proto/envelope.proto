@@ -1,0 +1,27 @@
+// Veil wire format, v1. Normative schema — implementation in @veil/core/codec.ts
+// and documentation in docs/PROTOCOL.md. Do not renumber fields.
+syntax = "proto3";
+
+package veil.v1;
+
+// Hybrid logical clock: Lamport counter + wall clock + tie-break node id.
+message HybridClock {
+  uint64 lamport = 1;
+  uint64 wall_ms = 2;
+  string node_id = 3;
+}
+
+// The only structure that travels over pubsub or through a mailbox.
+// `payload` is ciphertext of a sealed Payload (see payload.proto) padded to
+// exactly `bucket` bytes; relays can learn at most the bucket class.
+message Envelope {
+  uint32 version = 1;      // protocol version, currently 1
+  string sender = 2;       // sender did:key (not a display name)
+  string conversation = 3; // opaque pairwise/group id, never plaintext metadata
+  uint32 bucket = 4;       // one of 512 | 2048 | 8192 | 32768
+  bytes payload = 5;       // padded ciphertext, length == bucket
+  bytes nonce = 6;         // 24 bytes, unique per (sender, conversation)
+  HybridClock clock = 7;   // ordering + dedup
+  uint64 sent_at_ms = 8;   // sender wall clock, informational only
+  bytes signature = 9;     // Ed25519 over encodeEnvelopeSignatureBase()
+}

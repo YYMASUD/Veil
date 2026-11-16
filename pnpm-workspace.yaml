@@ -1,0 +1,13 @@
+packages:
+  - 'apps/*'
+  - 'packages/*'
+
+# pnpm >=10 blocks lifecycle scripts by default; allow-list the native/wasm builders we trust.
+allowBuilds:
+  '@tailwindcss/oxide': true
+  esbuild: true
+onlyBuiltDependencies:
+  - esbuild
+  - '@tailwindcss/oxide'
+  - '@swc/core'
+  - sharp

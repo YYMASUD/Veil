@@ -1,0 +1,34 @@
+{
+  "name": "veil",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Veil — decentralized, end-to-end encrypted chat. Users own their identity (a keypair) and their data. No central server stores messages or identities.",
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "pnpm@12.21.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "turbo run typecheck",
+    "dev": "turbo run dev",
+    "clean": "turbo run clean"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.15.0",
+    "globals": "^17.14.0",
+    "prettier": "^3.6.2",
+    "turbo": "^2.11.11",
+    "typescript-eslint": "^8.72.2"
+  }
+}
