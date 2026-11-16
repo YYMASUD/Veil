@@ -1,0 +1,34 @@
+{
+  "name": "@veil/relay-node",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Veil — volunteer libp2p circuit relay and encrypted mailbox node. No message decryption or identity storage.",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "tsx src/server.ts",
+    "dev": "tsx watch src/server.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@veil/core": "workspace:*",
+    "@chainsafe/libp2p-noise": "^17.0.0",
+    "@chainsafe/libp2p-yamux": "^8.0.1",
+    "@libp2p/circuit-relay-v2": "^4.2.17",
+    "@libp2p/dcutr": "^3.0.32",
+    "@libp2p/identify": "^4.1.18",
+    "@libp2p/ping": "^3.1.17",
+    "@libp2p/tcp": "^11.0.32",
+    "@libp2p/websockets": "^10.1.25",
+    "libp2p": "^3.5.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vitest": "^5.1.0"
+  }
+}
